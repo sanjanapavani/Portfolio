@@ -1,6 +1,6 @@
 # Sanjana Pavani's Portfolio
 
-Welcome to my portfolio repository! This repository contains a collection of documents showcasing my work in various school-related projects. Each file represents a unique project or report that highlights my skills and knowledge in different areas of technology and data science.
+Welcome to my portfolio repository! This repository contains a collection of documents showcasing my work in various university projects and internships. Each file represents a unique project or report that highlights my skills and knowledge in different areas of technology and data science.
 
 ## Contents
 
