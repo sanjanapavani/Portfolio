@@ -32,4 +32,4 @@ A draft report on the design concepts developed using Figma and Twitter for the 
 
 ## Contact
 
-For any inquiries or further information, please reach out to me at [sanjjp@uw.edu](mailto:sanjjp@uw.edu).
+For any other questions or further information, please reach out to me at [sanjjp@uw.edu](mailto:sanjjp@uw.edu).
