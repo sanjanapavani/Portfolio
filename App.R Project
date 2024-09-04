@@ -1,0 +1,120 @@
+library(shiny)
+library(tidyverse)
+library(plotly)
+
+# Load your dataset
+your_data <- read.csv("joined_df.csv")
+
+# UI
+ui <- fluidPage(
+  navbarPage("Data Exploration App",
+             
+    # Page 1: Title + Purpose
+    tabPanel("Title + Purpose",
+      h1("Project Overview"),
+      
+      p("We selected data sets from Let’s Get Healthy California and Regional Greenhouse Gas Emissions. 
+        Let’s Get Healthy California employs a continuous, statewide approach to evaluate and enhance health conditions, 
+        focusing on prevention, health equity, collective action, and data-driven innovation. Our specific data set targets 
+        depression among California adults. The second data set provides detailed regional greenhouse gas emissions statistics, 
+        identifying key contributors and informing targeted environmental policies for emission reduction initiatives."),
+      
+      p("The specific data set we chose targets depression and the portion of adults who were told they had a depressive disorder in California. 
+        This is a highly prevalent cause and helps us understand more about mental health and use data to gather more information 
+        to help produce effective solutions, which could lead to fewer people diagnosed with depression."),
+      
+      h1("Our Analysis"),
+      
+      p("Our analysis involves the health assessment, opportunity identification, collective action, and addressing root causes for the Let’s Get Healthy California data set. 
+        Our analysis of the Regional Greenhouse Gas Emissions data set includes policy development, emission reduction strategies, resource allocation, and monitoring progress."),
+      
+      h1("Understanding and Analyzing the Data"),
+      
+      p("Understanding and analyzing the data from Let’s Get Healthy California and Regional Greenhouse Gas Emissions is crucial for mental health and environmental considerations. 
+        The information on depression rates and diagnoses in California provides valuable insights into the state's mental health landscape, 
+        allowing for the identification of opportunities to enhance prevention, health equity, collective action, and innovative solutions. 
+        This not only addresses the root causes of mental health issues but also has the potential to reduce the prevalence of depression, 
+        contributing to an overall healthier population. Simultaneously, the detailed breakdown of greenhouse gas emissions by industry, households, 
+        and intensity informs the development of targeted environmental policies. Stakeholders can implement effective emission reduction strategies 
+        by identifying critical contributors to regional carbon footprints, allocating resources wisely, and monitoring progress over time. 
+        This data is not only crucial for informed decision-making but also holds the potential to drive positive changes."),
+      
+      # Add images or other additional flare aspects here
+      img(src = "https://www.energyforhumanity.org/wp-content/uploads/2015/05/visual-map-of-world-emissions.jpg", width = 800, height = 400),
+      p("Image Source: [Energy for Humanity]"),
+      img(src = "https://media.istockphoto.com/id/1224548497/vector/stop-cyberbullying-depressed-girl-suffering-from-online-harassment-isolated-vector.jpg?s=612x612&w=0&k=20&c=2ZnuiM54Bjvrkuq5SIE9ItPj7fxhSZnOUTIUk0fznWc=", width = 800, height = 400),
+      p("Image Source: [iStockPhoto]")
+    ),
+    
+    # Page 2: Change Over Time
+    tabPanel("Change Over Time",
+      fluidRow(
+        column(4,
+          h3("Select Variable for X-Axis:"),
+          selectInput("changeXInput", "Choose X-Axis Variable",
+            choices = names(your_data))
+        ),
+        column(4,
+          h3("Select Variable for Y-Axis:"),
+          selectInput("changeYInput", "Choose Y-Axis Variable",
+            choices = names(your_data))
+        ),
+        column(4,
+          h3("Select Aggregation:"),
+          selectInput("changeAggInput", "Choose Aggregation",
+            choices = c("Sum", "Average", "Count"))
+        ),
+        column(12,
+          plotOutput("changeOverTimePlot")
+        )
+      )
+    ),
+    
+    # Page 3: Outliers
+    tabPanel("Outliers",
+      fluidRow(
+        column(4,
+          h3("Select Variable:"),
+          selectInput("outlierVarInput", "Choose Variable",
+            choices = names(your_data))
+        ),
+        column(8,
+          plotlyOutput("outlierPlot"),
+          dataTableOutput("outlierTable")
+        )
+      )
+    )
+  )
+)
+
+# Server
+server <- function(input, output, session) {
+  
+  # Page 2: Change Over Time
+  observe({
+    # Update the choices for X-Axis and Y-Axis based on available columns
+    updateSelectInput(session, "changeXInput", choices = names(your_data))
+    updateSelectInput(session, "changeYInput", choices = names(your_data))
+  })
+  
+  output$changeOverTimePlot <- renderPlot({
+    ggplot(your_data, aes_string(x = input$changeXInput, y = input$changeYInput)) +
+      geom_line() +
+      labs(title = "Change Over Time",
+           x = input$changeXInput, y = input$changeYInput)
+  })
+  
+  # Page 3: Outliers
+  output$outlierPlot <- renderPlotly({
+    plot_ly(your_data, y = ~get(input$outlierVarInput), type = "box")
+  })
+  
+  output$outlierTable <- renderDataTable({
+    your_data %>% 
+      arrange(desc(!!sym(input$outlierVarInput))) %>% 
+      slice_head(n = 10)
+  })
+}
+
+# Combine UI and server into one Shiny app object
+shinyApp(ui, server)
