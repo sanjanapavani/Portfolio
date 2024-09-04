@@ -4,7 +4,7 @@ Welcome to my portfolio repository! This repository contains a collection of doc
 
 ## Contents
 
-### 1. Content Services Helpdesk PowerBI Report.pdf
+### 1. Helpdesk Tickets PowerBI Report.pdf
 A comprehensive PowerBI report designed to analyze and visualize helpdesk data for content services. This report provides actionable insights through interactive dashboards and detailed visualizations, helping stakeholders understand key metrics and trends.
 
 ### 2. Dashboard PowerBI Report.pdf
