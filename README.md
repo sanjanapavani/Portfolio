@@ -22,6 +22,9 @@ An in-depth report on a machine learning project aimed at detecting malware. Thi
 ### 6. Envision Design Report Draft.pdf
 A draft report on the design concepts developed using Figma and Twitter for the Envision project. This document explores the design process, user experience considerations, and the application of Figma for creating user interfaces and visual elements, as well as leveraging Twitter data for design insights.
 
+### 7. App.R Project
+A Shiny app project developed in R to create an interactive web application. This app allows users to input data and generate visualizations in real-time, demonstrating skills in R programming, data visualization, and interactive UI design.
+
 ## Features
 
 - **PowerBI Reports**: Detailed reports and dashboards showcasing data visualization skills.
@@ -29,6 +32,7 @@ A draft report on the design concepts developed using Figma and Twitter for the 
 - **Machine Learning**: Insights into a machine learning project using Python and Altair for malware detection.
 - **Iterative Design**: An exploration of iterative design principles and graph functions in Java.
 - **Design Drafts**: Design concepts and strategies created with Figma and Twitter for user experience projects.
+- **Shiny App**: An interactive Shiny app project showcasing real-time data input and visualization in R.
 
 ## Contact
 
