@@ -36,4 +36,4 @@ A Shiny app project developed in R to create an interactive web application. Thi
 
 ## Contact
 
-For any other questions or further information, please reach out to me at [sanjjp@uw.edu](mailto:sanjjp@uw.edu).
+For any other questions or further information, please reach out to me at [plsanjana@gmail.com](mailto:sanjjp@uw.edu).
